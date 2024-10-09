@@ -1,0 +1,71 @@
+{
+  "name": "dusa",
+  "version": "0.0.13",
+  "type": "module",
+  "main": "lib/client.js",
+  "types": "lib/client.d.ts",
+  "exports": {
+    "require": "./lib/client.cjs",
+    "import": "./lib/client.js"
+  },
+  "homepage": "https://dusa.rocks",
+  "repository": {
+    "type": "git",
+    "url": "https://git.sr.ht/~robsimmons/dusa.git"
+  },
+  "bugs": {
+    "url": "https://todo.sr.ht/~robsimmons/Dusa"
+  },
+  "keywords": [
+    "data",
+    "database",
+    "datalog",
+    "logic programming"
+  ],
+  "license": "GPL-3.0-only",
+  "scripts": {
+    "build": "tsc && vite build",
+    "coverage": "vitest run --coverage",
+    "dev": "vite",
+    "lib": "tsc --project tsconfig.package.json && rollup lib/client.js --file lib/client.cjs --format cjs",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "prettier": "prettier --write *.ts *.json *.html *.md **/*.ts* **/*.json **/*.css **/*.html **/*.md",
+    "prettier:check": "prettier --check .",
+    "preview": "vite preview",
+    "protobuf": "buf generate --template proto/buf.gen.yaml proto && prettier --write src/gen/*.ts",
+    "test": "vitest run",
+    "tsc": "tsc",
+    "watch": "vitest"
+  },
+  "devDependencies": {
+    "@bufbuild/buf": "^1.28.1",
+    "@bufbuild/protobuf": "^1.6.0",
+    "@bufbuild/protoc-gen-es": "^1.6.0",
+    "@codemirror/commands": "^6.3.0",
+    "@codemirror/language": "^6.9.2",
+    "@codemirror/lint": "^6.4.2",
+    "@codemirror/state": "^6.3.1",
+    "@codemirror/view": "^6.21.4",
+    "@lezer/highlight": "^1.1.6",
+    "@radix-ui/react-dialog": "^1.0.5",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "@types/react": "^18.2.15",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "@vitejs/plugin-react-swc": "^3.3.2",
+    "@vitest/coverage-istanbul": "^0.34.6",
+    "eslint": "^8.45.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "prettier": "^3.0.3",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^4.5.2",
+    "typescript": "^5.0.2",
+    "vite": "^5.0.13",
+    "vitest": "^0.34.6"
+  }
+}
