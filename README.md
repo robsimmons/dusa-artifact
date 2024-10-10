@@ -21,7 +21,7 @@ This is intended to be an archival version to accompany a publication, but by fa
 
 If you then press the "load program" button, the implementation will present two solutions, which can be navigated with the `<` and `>` buttons. Reloading the program will result in the solutions being returned in different orders.
 
-The software on https://dusa.rocks/ runs within the browser, and the site contains no telemetry or analytics.
+Additional documentation is at https://dusa.rocks/docs/. All software on the site runs entirely within the browser, and the site contains no telemetry or analytics.
 
 # Software artifact
 
@@ -67,7 +67,7 @@ Including the `-q <pred>` flag will print only certain predicates instead of the
 
 The command line utility can be used to explore the asymptotic performance of Dusa. The command line argument -f allows facts to be passed on the command line, which we can use to vary input sizes.
 
-A classic example of McAllester's cost semantics is that this program is predicted to run in O(n^2) time on a sparse graph with n edges:
+A classic example of McAllester's cost semantics is that this program is predicted to run in _O(n^2)_ time on a sparse graph with _n_ edges:
 
     path X Y :- edge X Y.
     path X Z :- edge X Y, path Y Z.
@@ -77,7 +77,7 @@ This can be seen with Dusa: doubling the number of edges should increase the tim
     time ./dusa examples/perf-edge-path.dusa -f '[{"name": "dimension", "args": [], "value": 500 }]' -cpath
     time ./dusa examples/perf-edge-path.dusa -f '[{"name": "dimension", "args": [], "value": 1000 }]' -cpath
 
-On the other hand, this program produces the same models but the McAllester cost semantics predicts it should run in O(n^3) time on a sparse graph with n edges:
+On the other hand, this program produces the same models but the McAllester cost semantics predicts it should run in _O(n^3)_ time on a sparse graph with _n_ edges:
 
     path X Y :- edge X Y.
     path X Z :- path X Y, path Y Z.
@@ -104,9 +104,9 @@ The "grounding bottleneck" is a problem for many practical problems in answer se
     nselect(X) :- dom(X), not select(X).
     :- dom(X), not nselect(X), select(Y), X != Y.
 
-The program has n+1 models, where n is the size of the dom/1 relation: one model where the p/6 relation is empty, and n facts where p(X,X,X,X,X,X) holds for some X in the dom/1 relation. However, it performs very poorly on ground-then-solve answer set programming engines by forcing the grounder to consider as many as 6^n possible programs, where n is the size of the dom/1 relation.
+The program has _n+1_ models, where _n_ is the size of the dom/1 relation: one model where the p/6 relation is empty, and _n_ models where the p/1 relation contains a single fact `p(X,X,X,X,X,X)` for some `X` in the dom/1 relation. However, it performs very poorly on ground-then-solve answer set programming engines by forcing the grounder to consider as many as _6^n_ possible programs, where _n_ is the size of the dom/1 relation.
 
-By downloading Clingo from a package manager (brew install clingo, apt-get install clingo, etc.) or from https://github.com/potassco/clingo/releases/ it is possible to run this benchmark yourself. It is only feasible with very small n.
+By downloading Clingo from a package manager (brew install clingo, apt-get install clingo, etc.) or from https://github.com/potassco/clingo/releases/ it is possible to run this benchmark yourself. It is only feasible with very small problem sizes.
 
     clingo examples/grounding-bottleneck.lp -csize=10
 
@@ -123,7 +123,7 @@ According to the ASP-to-FCLP translations described in the paper, the ASP progra
     ok is { yes }.
     ok is { no } :- dom X, nselect X is ff, select Y is tt, X != Y.
 
-It is possible to run this program quickly with n in the thousands:
+It is possible to run this program quickly with _n_ in the thousands:
 
     ./dusa examples/grounding-bottleneck.dusa -f'[{ "name": "size", "args": [], "value": 10000 }]' -qp
 
