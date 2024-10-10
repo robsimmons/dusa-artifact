@@ -1,17 +1,15 @@
 # Dusa implementation, examples, and benchmarking
 
-Artifact for the paper "Finite Choice Logic Programming," POPL 2025.
-
-## Claims
-
-This artifact supports the following claims in the Finite Choice Logic Programming paper:
+This artifact supports the following claims in the Finite Choice Logic Programming paper, conditionally accepted for presentation at [POPL 2025](https://popl25.sigplan.org/):
 
 1.  Dusa is our implementation of finite-choice logic programming, the language from the paper. The implementation supports three modes of interaction: a TypeScript API, a command-line program, and a browser-based editor.
 2.  Dusa can enumerate solutions to finite-choice logic programs in a randomized fashion.
 3.  The runtime behavior of Dusa can often reliably (if approximately) be predicted by McAllester's cost semantics based on prefix firings.
 4.  Dusa outperforms state-of-the-art answer set programming engines on a variety of examples, in part because our implementation avoids the grounding bottleneck encountered by ASP solvers that take a ground-then-solve approach to program execution.
 
-## Online artifact
+All the figures from the main body of the paper are included in the `examples/` directory, and can be run in the online editor or with the software artifact included here.
+
+# Online editor
 
 This is intended to be an archival version to accompany a publication, but by far the easiest way to verify claims #1 and #2 is to visit https://dusa.rocks/ and replace the contents of the text box with the program from Figure 1:
 
@@ -25,15 +23,11 @@ If you then press the "load program" button, the implementation will present two
 
 The software on https://dusa.rocks/ runs within the browser, and the site contains no telemetry or analytics.
 
-## Examples
-
-All the figures from the main body of the paper are included in the `examples/` directory.
-
-## Software artifact
+# Software artifact
 
 Benchmarking was performed against the version of Dusa published as dusa@0.0.13 in the Node Package Manager (NPM) registry. This package is included in the `dusa-0.0.13/` directory in the artifact, so NPM is not a dependency of this artifact.
 
-The only dependency for running Dusa is Node.js: benchmarking was done with Node 18, but we have tested with Node v18.20.4, v20.10.0, and v22.9.0. From the directory containing this README, the following will quickly check that the implementation works. Running the benchmark suite on the Clingo and Alpha answer set programming implementation requires those pieces of software; instructions are included in the benchmarking section.
+The only dependency for running Dusa is Node.js: benchmarking was done with Node 18, but we have tested with Node v18.20.4, v20.10.0, and v22.9.0. From the directory containing this README, the following will quickly check that the implementation works.
 
     % node
     Welcome to Node.js v22.9.0.
@@ -53,13 +47,13 @@ If the package `dusa@0.0.13` is installed from the node package manager, then `i
 
 ## Command-line utility
 
-The root directory of this repository contains a command-line utility `./dusa` that can be used to validate all of the paper's claims. Node is the only dependency (tested with Node v18.20.4, v20.10.0, and 22).
+The root directory of this repository contains a command-line utility `./dusa`.
 
-The command-line utility requires one positional argument, a dusa program, and if given no other arguments will return a single solution.
+The command-line utility requires one positional argument, a Dusa program, and if given no other arguments will return a single solution in JSON format.
 
     ./dusa examples/figure-1-mutual-exclusion.dusa
 
-The `-n 0` flag will return all solutions. In the case of the second figure, this will return 62 solutions.
+The `-n` flag will controls the number of solutions returned. In the case of the second figure, this command will return 62 solutions:
 
     ./dusa examples/figure-2-spanning-tree.dusa -n0
 
@@ -71,9 +65,9 @@ Including the `-q <pred>` flag will print only certain predicates instead of the
 
 ## Basic cost semantics
 
-The command line utility can be used to do some basic validation of the asymptotic performance of Dusa. The command line argument -f allows facts to be passed on the command line, which we can use to vary input sizes.
+The command line utility can be used to explore the asymptotic performance of Dusa. The command line argument -f allows facts to be passed on the command line, which we can use to vary input sizes.
 
-The a classic example of McAllester's cost semantics is that this program should run in O(n^2) time on a sparse graph with n edges:
+A classic example of McAllester's cost semantics is that this program is predicted to run in O(n^2) time on a sparse graph with n edges:
 
     path X Y :- edge X Y.
     path X Z :- edge X Y, path Y Z.
@@ -86,7 +80,7 @@ This can be seen with Dusa: doubling the number of edges should increase the tim
 On the other hand, this program produces the same models but the McAllester cost semantics predicts it should run in O(n^3) time on a sparse graph with n edges:
 
     path X Y :- edge X Y.
-    path X Z :- edge X Y, path Y Z.
+    path X Z :- path X Y, path Y Z.
 
 This can be seen with Dusa: doubling the number of edges should increase the time it takes to run by about 8x:
 
@@ -100,7 +94,7 @@ The linear growth in the canonical representative algorithm described in Figures
 
 ## Grounding bottleneck
 
-The grounding bottleneck is a problem for many answer set problems that people are interested in, but it's most easily demonstrated through a pathological case. The following program requires takes time proportional to 6^n, where n is the size of the dom/1 relation.
+The "grounding bottleneck" is a problem for many practical problems in answer set programming, but it's most easily demonstrated through a pathological case.
 
     p(X1,X2,X3,X4,X5,X6) :-
         select(X1), select(X2), select(X3),
@@ -110,7 +104,7 @@ The grounding bottleneck is a problem for many answer set problems that people a
     nselect(X) :- dom(X), not select(X).
     :- dom(X), not nselect(X), select(Y), X != Y.
 
-The program has n+1 models, where n is the size of the dom/1 relation: one model where the p/6 relation is empty, and n facts where p(X,X,X,X,X,X) holds for some X in the dom/1 relation.
+The program has n+1 models, where n is the size of the dom/1 relation: one model where the p/6 relation is empty, and n facts where p(X,X,X,X,X,X) holds for some X in the dom/1 relation. However, it performs very poorly on ground-then-solve answer set programming engines by forcing the grounder to consider as many as 6^n possible programs, where n is the size of the dom/1 relation.
 
 By downloading Clingo from a package manager (brew install clingo, apt-get install clingo, etc.) or from https://github.com/potassco/clingo/releases/ it is possible to run this benchmark yourself. It is only feasible with very small n.
 
