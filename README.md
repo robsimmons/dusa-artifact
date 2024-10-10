@@ -110,7 +110,7 @@ By downloading Clingo from a package manager (brew install clingo, apt-get insta
 
     clingo examples/grounding-bottleneck.lp -csize=10
 
-According to the ASP-to-FCLP translations described in the paper, this program is equivalent to the following Dusa program:
+According to the ASP-to-FCLP translations described in the paper, the ASP program above is equivalent to the following Dusa program:
 
     p X1 X2 X3 X4 X5 X6 :-
         select X1 is tt, select X2 is tt, select X3 is tt,
