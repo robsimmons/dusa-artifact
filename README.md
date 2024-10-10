@@ -1,11 +1,11 @@
 # Dusa implementation, examples, and benchmarking
 
-This artifact supports the following claims in the Finite Choice Logic Programming paper, conditionally accepted for presentation at [POPL 2025](https://popl25.sigplan.org/):
+This artifact supports the claims in Section 7 of the Finite Choice Logic Programming paper, conditionally accepted for presentation at [POPL 2025](https://popl25.sigplan.org/).
 
 1.  Dusa is our implementation of finite-choice logic programming, the language from the paper. The implementation supports three modes of interaction: a TypeScript API, a command-line program, and a browser-based editor.
 2.  Dusa can enumerate solutions to finite-choice logic programs in a randomized fashion.
 3.  The runtime behavior of Dusa can often reliably (if approximately) be predicted by McAllester's cost semantics based on prefix firings.
-4.  Dusa outperforms state-of-the-art answer set programming engines on a variety of examples, in part because our implementation avoids the grounding bottleneck encountered by ASP solvers that take a ground-then-solve approach to program execution.
+4.  Dusa outperforms state-of-the-art answer set programming engines on a variety of examples, in part because our implementation avoids the grounding bottleneck encountered by ASP solvers that take a ground-then-solve approach to program execution. Detailed performance benchmarking is included in Figure 9, Figure 10, and in the paper's appendices.
 
 All the figures from the main body of the paper are included in the `examples/` directory, and can be run in the online editor or with the software artifact included here.
 
