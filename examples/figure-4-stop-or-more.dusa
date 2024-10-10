@@ -1,0 +1,8 @@
+# ASP with no finite grounding
+
+visit z is { tt }.
+visit (s N) is { tt } :- more N is tt.
+more N is? ff :- visit N is tt.
+stop N is { tt } :- visit N is tt, more N is ff.
+stop N is? ff :- visit N is tt.
+more N is { tt } :- visit N is tt, stop N is ff.

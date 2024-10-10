@@ -1,0 +1,8 @@
+# CNF-SAT
+
+p is { tt, ff }.
+q is { tt, ff }.
+r is { tt, ff }.
+ok is { yes }.
+ok is { no } :- p is ff, q is tt.
+ok is { no } :- p is tt, q is ff, r is ff.

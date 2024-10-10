@@ -1,0 +1,26 @@
+# Spanning tree
+
+edge X Y :- edge Y X.
+root is? X :- edge X Y.
+parent X is { X } :- root is X.
+parent Y is? { X } :- edge X Y, parent X is Z.
+
+# Example graph 
+# 
+#   a   f--k--j
+#   | \    |
+#   b--c   g  h
+#   |  |      |
+#   d--e   i--l
+
+edge a b.
+edge a c.
+edge b c.
+edge b d.
+edge c e.
+edge d e.
+edge f k.
+edge g k.
+edge h l.
+edge i l.
+edge k j.
