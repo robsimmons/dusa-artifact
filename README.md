@@ -126,3 +126,7 @@ According to the ASP-to-FCLP translations described in the paper, this program i
 It is possible to run this program quickly with n in the thousands:
 
     ./dusa examples/grounding-bottleneck.dusa -f'[{ "name": "size", "args": [], "value": 10000 }]' -qp
+
+## Benchmark
+
+(todo: add code for running the benchmarks from the paper to repo)
