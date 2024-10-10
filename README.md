@@ -127,6 +127,11 @@ It is possible to run this program quickly with n in the thousands:
 
     ./dusa examples/grounding-bottleneck.dusa -f'[{ "name": "size", "args": [], "value": 10000 }]' -qp
 
-## Benchmark
+## Full benchmarking
 
-(todo: add code for running the benchmarks from the paper to repo)
+The benchmarks and code for replicating our performance results is described in the `benchmark/README.md` file. The following commands will run the benchmarks that led to Figures 9 and 10:
+
+    cd benchmark
+    node bench-graph.js > results/graph-tests.csv
+
+The Clingo benchmarks will only run if Clingo is installed, and the Alpha benchmarks will only run if `java` is on your path and the file `alpha-cli-app-0.7.0-bundled.jar` is downloaded from https://github.com/alpha-asp/Alpha/releases, renamed to `alpha.jar`, and placed in the `benchmarks/` directory.
