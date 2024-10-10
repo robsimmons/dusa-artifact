@@ -1,4 +1,4 @@
-import { Dusa } from 'dusa';
+import { Dusa } from '../dusa-0.0.13/lib/client.js';
 import { readFileSync } from 'fs';
 
 const progfile = readFileSync(process.argv[2]).toString('utf-8');
