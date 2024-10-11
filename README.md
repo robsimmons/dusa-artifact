@@ -74,8 +74,8 @@ A classic example of McAllester's cost semantics is that this program is predict
 
 This can be seen with Dusa: doubling the number of edges should increase the time it takes to run by about 4x:
 
-    time ./dusa examples/perf-edge-path.dusa -f '[{"name": "dimension", "args": [], "value": 500 }]' -cpath
-    time ./dusa examples/perf-edge-path.dusa -f '[{"name": "dimension", "args": [], "value": 1000 }]' -cpath
+    time ./dusa examples/perf-edge-path.dusa -f '[{"name": "numEdges", "args": [], "value": 500 }]' -cpath
+    time ./dusa examples/perf-edge-path.dusa -f '[{"name": "numEdges", "args": [], "value": 1000 }]' -cpath
 
 On the other hand, this program produces the same models but the McAllester cost semantics predicts it should run in _O(n^3)_ time on a sparse graph with _n_ edges:
 
@@ -84,13 +84,13 @@ On the other hand, this program produces the same models but the McAllester cost
 
 This can be seen with Dusa: doubling the number of edges should increase the time it takes to run by about 8x:
 
-    time ./dusa examples/perf-path-path.dusa -f '[{"name": "dimension", "args": [], "value": 250 }]' -cpath
-    time ./dusa examples/perf-path-path.dusa -f '[{"name": "dimension", "args": [], "value": 500 }]' -cpath
+    time ./dusa examples/perf-path-path.dusa -f '[{"name": "numEdges", "args": [], "value": 250 }]' -cpath
+    time ./dusa examples/perf-path-path.dusa -f '[{"name": "numEdges", "args": [], "value": 500 }]' -cpath
 
 The linear growth in the canonical representative algorithm described in Figures 9 and 10 can also be explored in this way: doubling the number of edges should increase the time it takes to run by about 2x.
 
-    time ./dusa examples/perf-canonical-representative.dusa -f '[{"name": "dimension", "args": [], "value": 25000 }]' -qisRep
-    time ./dusa examples/perf-canonical-representative.dusa -f '[{"name": "dimension", "args": [], "value": 50000 }]' -qisRep
+    time ./dusa examples/perf-canonical-representative.dusa -f '[{"name": "numEdges", "args": [], "value": 25000 }]' -qisRep
+    time ./dusa examples/perf-canonical-representative.dusa -f '[{"name": "numEdges", "args": [], "value": 50000 }]' -qisRep
 
 ## Grounding bottleneck
 

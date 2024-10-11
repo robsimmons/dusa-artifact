@@ -1,6 +1,6 @@
 #builtin INT_MINUS minus
 
-edge (minus N 1) N :- dimension is N.
+edge (minus N 1) N :- numEdges is N.
 edge (minus N 1) N :- edge N _, N > 0.
 
 edge X Y :- edge Y X.
