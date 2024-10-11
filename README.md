@@ -104,7 +104,7 @@ The "grounding bottleneck" is a problem for many practical problems in answer se
     nselect(X) :- dom(X), not select(X).
     :- dom(X), not nselect(X), select(Y), X != Y.
 
-The program has _n+1_ models, where _n_ is the size of the dom/1 relation: one model where the p/6 relation is empty, and _n_ models where the p/1 relation contains a single fact `p(X,X,X,X,X,X)` for some `X` in the dom/1 relation. However, it performs very poorly on ground-then-solve answer set programming engines by forcing the grounder to consider as many as _6^n_ possible programs, where _n_ is the size of the dom/1 relation.
+The program has _n+1_ models, where _n_ is the size of the dom/1 relation: one model where the p/6 relation is empty, and _n_ models where the p/1 relation contains a single fact `p(X,X,X,X,X,X)` for some `X` in the dom/1 relation. However, it performs very poorly on ground-then-solve answer set programming engines by forcing the grounder to consider as many as _n^6_ possible programs, where _n_ is the size of the dom/1 relation.
 
 By downloading Clingo from a package manager (brew install clingo, apt-get install clingo, etc.) or from https://github.com/potassco/clingo/releases/ it is possible to run this benchmark yourself. It is only feasible with very small problem sizes.
 
