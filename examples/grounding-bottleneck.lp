@@ -1,5 +1,5 @@
 dom(size).
-dom(X-1) :- dom(X), X > 0. 
+dom(X-1) :- dom(X), X > 1. 
 
 p(X1,X2,X3,X4,X5,X6) :-
     select(X1), select(X2), select(X3),
