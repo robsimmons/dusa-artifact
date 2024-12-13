@@ -1,3 +1,9 @@
+As of December 13, 2024, this repository is archived.
+
+The artifacts connected to this repository are on Zenodo:
+* Primary artifact: https://doi.org/10.5281/zenodo.13915346
+* Benchmarking data: https://doi.org/10.5281/zenodo.13930788
+
 # Dusa implementation, examples, and benchmarking
 
 This artifact supports the claims in Section 7 of the Finite Choice Logic Programming paper, conditionally accepted for presentation at [POPL 2025](https://popl25.sigplan.org/).
